@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 data/bronze/*.csv
+data/silver/
 
 # C extensions
 *.so
