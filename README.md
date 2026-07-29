@@ -149,6 +149,36 @@ uma nova execução substitui a saída Silver anterior.
 Confirme que um JDK 17 ou superior está instalado e que `JAVA_HOME` aponta para
 a pasta do JDK. Feche e abra o terminal novamente após alterar a variável.
 
+### Erros do Hadoop no Windows
+
+Se o Spark apresentar erros relacionados ao Hadoop, à biblioteca nativa ou ao
+`winutils.exe`, crie a pasta necessária no PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force C:\hadoop\bin
+```
+
+Baixe os arquivos `hadoop.dll` e `winutils.exe` da pasta
+[hadoop-3.3.6/bin do repositório winutils](https://github.com/cdarlint/winutils/tree/master/hadoop-3.3.6/bin)
+e coloque ambos em:
+
+```text
+C:\hadoop\bin\
+```
+
+A versão 3.3.6 do Hadoop é compatível com o Spark 4.2.0 utilizado neste estudo.
+Em seguida, nas variáveis de ambiente do Windows:
+
+1. crie a variável `HADOOP_HOME` com o valor `C:\hadoop`;
+2. adicione `%HADOOP_HOME%\bin` à variável `Path`;
+3. feche e abra novamente o terminal e o Jupyter para aplicar as alterações.
+
+Para conferir a configuração em um novo PowerShell, execute:
+
+```powershell
+winutils.exe
+```
+
 ### `Path does not exist: .../data/bronze/RESULTADOS_2025.csv`
 
 Confira o nome e a localização do arquivo. O caminho esperado é exatamente:
